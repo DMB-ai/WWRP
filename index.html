@@ -1,0 +1,17 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WESTWOOD CITY — Loading</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#080706}body{font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;color:#ffe6a0}
+.stage{position:fixed;inset:0;overflow:hidden;background:#080706}.slide{position:absolute;inset:-3%;background:center/cover no-repeat;opacity:0;transform:scale(1.04);filter:sepia(.2) saturate(.95) contrast(1.05);transition:opacity 1.7s ease;will-change:opacity,transform}.slide.active{opacity:1}
+.slide.active.a{animation:a 11s ease-in-out both}.slide.active.b{animation:b 11s ease-in-out both}.slide.active.c{animation:c 11s ease-in-out both}
+@keyframes a{from{transform:scale(1.045) translate(-.6%,.2%)}to{transform:scale(1.13) translate(.7%,-.3%)}}@keyframes b{from{transform:scale(1.13) translate(.6%,-.3%)}to{transform:scale(1.045) translate(-.7%,.3%)}}@keyframes c{from{transform:scale(1.05) translate(0,.6%)}to{transform:scale(1.14) translate(0,-.5%)}}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,#0005,transparent 68%),linear-gradient(0deg,#0009,transparent 55%)}
+.brand{position:absolute;left:clamp(22px,3vw,56px);bottom:clamp(122px,16vh,160px);font-size:clamp(44px,6.3vw,96px);line-height:.82;text-transform:uppercase;letter-spacing:.01em;color:#ffe5a0;-webkit-text-stroke:3px #080705;paint-order:stroke fill;text-shadow:4px 5px 0 #080705,0 8px 20px #000b}.brand span{display:block}.brand span+span{margin-top:.16em}
+@media(max-width:600px){.brand{bottom:150px}.panel{padding:11px 12px}}@media(prefers-reduced-motion:reduce){.slide,.slide.active.a,.slide.active.b,.slide.active.c{animation:none;transition:opacity .5s}}
+
+.neon-progress{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);width:min(420px,58vw);z-index:20}
+.neon-progress .track{height:5px;background:rgba(255,220,130,.14);border:0;border-radius:99px;overflow:hidden;box-shadow:0 0 8px rgba(255,190,70,.22)}
+.neon-progress .fill{height:100%;width:0;background:linear-gradient(90deg,#ffb52e,#fff2a8);border-radius:99px;box-shadow:0 0 7px #ffc34d,0 0 16px #ffb52e,0 0 28px rgba(255,177,38,.8);transition:width .08s linear}
+</style></head><body><div class="stage">
+<div class="slide active a" style="background-image:url('assets/westwood-01.jpg')"></div><div class="slide" style="background-image:url('assets/westwood-02.jpg')"></div><div class="slide" style="background-image:url('assets/westwood-03.jpg')"></div><div class="slide" style="background-image:url('assets/westwood-04.jpg')"></div><div class="slide" style="background-image:url('assets/westwood-05.jpg')"></div><div class="shade"></div>
+<div class="brand"><span>Westwood</span><span>City</span></div><div class="neon-progress"><div class="track"><div class="fill" id="fill"></div></div></div></div>
+<script>(()=>{const slides=[...document.querySelectorAll('.slide')],moves=['a','b','c'];const fill=document.getElementById('fill');let n=0,start=performance.now(),duration=9000;function frame(now){const progress=Math.min(100,((now-start)/duration)*100);fill.style.width=progress+'%';requestAnimationFrame(frame)}requestAnimationFrame(frame);setInterval(()=>{slides[n].classList.remove('active',...moves);n=(n+1)%slides.length;slides[n].classList.remove(...moves);void slides[n].offsetWidth;slides[n].classList.add('active',moves[n%3]);start=performance.now();fill.style.width='0%';},duration)})();</script></body></html>
